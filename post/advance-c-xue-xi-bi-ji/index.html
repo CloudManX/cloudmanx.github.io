@@ -15,14 +15,14 @@
     
 
   <meta name="description" content="第一课 Const
+https://www.youtube.com/watch?v=7arYbAhu0aw&amp;amp;list=PLE28375D4AC946CC3
 
-ptr to const(在*左侧) vs. const ptr(在*右侧)
-取消常性：const_cast&amp;lt;int&amp;amp;&amp;gt;() vs. 增加常性：static_cast&amp;lt;const int&amp;am..." />
+ptr to const(在*左侧) vs. const ptr(在*右侧..." />
   <meta property="og:title" content="Advance C++ 学习笔记 - Yunhan的博客">
   <meta property="og:description" content="第一课 Const
+https://www.youtube.com/watch?v=7arYbAhu0aw&amp;amp;list=PLE28375D4AC946CC3
 
-ptr to const(在*左侧) vs. const ptr(在*右侧)
-取消常性：const_cast&amp;lt;int&amp;amp;&amp;gt;() vs. 增加常性：static_cast&amp;lt;const int&amp;am..." />
+ptr to const(在*左侧) vs. const ptr(在*右侧..." />
   <meta property="og:type" content="articles">
   <meta property="og:url" content="https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/" />
   <meta property="og:image" content="https://yunma10.github.io/images/avatar.png">
@@ -30,9 +30,9 @@ ptr to const(在*左侧) vs. const ptr(在*右侧)
   <meta property="og:image:width" content="1200">
   <meta name="twitter:title" content="Advance C++ 学习笔记 - Yunhan的博客">
   <meta name="twitter:description" content="第一课 Const
+https://www.youtube.com/watch?v=7arYbAhu0aw&amp;amp;list=PLE28375D4AC946CC3
 
-ptr to const(在*左侧) vs. const ptr(在*右侧)
-取消常性：const_cast&amp;lt;int&amp;amp;&amp;gt;() vs. 增加常性：static_cast&amp;lt;const int&amp;am...">
+ptr to const(在*左侧) vs. const ptr(在*右侧...">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="canonical" href="https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/">
 
@@ -56,11 +56,12 @@ ptr to const(在*左侧) vs. const ptr(在*右侧)
         </h1>
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2021-06-07 · 1 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2021-06-06 · 1 min read</div>
           
         </div>
         <div class="markdown mb-8" v-pre>
           <h2 id="第一课-const">第一课 Const</h2>
+<p>https://www.youtube.com/watch?v=7arYbAhu0aw&amp;list=PLE28375D4AC946CC3</p>
 <ul>
 <li>ptr to const(在*左侧) vs. const ptr(在*右侧)</li>
 <li>取消常性：const_cast&lt;int&amp;&gt;() vs. 增加常性：static_cast&lt;const int&amp;&gt;()
@@ -77,6 +78,28 @@ ptr to const(在*左侧) vs. const ptr(在*右侧)
 </ul>
 </li>
 </ul>
+<h2 id="第二课-const-and-functions">第二课 Const and Functions</h2>
+<p>https://www.youtube.com/watch?v=RC7uE_wl1Uc&amp;list=PLE28375D4AC946CC3&amp;index=2</p>
+<ul>
+<li>Const Reference 作为函数的参数：
+<ul>
+<li>该函数内Reference的值不可改变</li>
+<li>如果 Const 作为参数用在值传递(pass-by-value)而不是引用传递(pass-by-const), 则没有意义且不能Overload</li>
+</ul>
+</li>
+<li>Const 返回值(Return Value)
+<ul>
+<li>同理，只有在使用引用作为返回值时才有意义</li>
+</ul>
+</li>
+<li>Const Function
+<ul>
+<li>不能改变Member Variable; 不能调用没有const的Member Function</li>
+<li>可以用来实现Overloading: 当对象未常量时调用该Const函数</li>
+</ul>
+</li>
+</ul>
+<h2 id="第三课-rvalue-vs-lvalue">第三课 Rvalue vs. Lvalue</h2>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -121,6 +144,8 @@ ptr to const(在*左侧) vs. const ptr(在*右侧)
 <li>
 <ul>
 <li><a href="#%E7%AC%AC%E4%B8%80%E8%AF%BE-const">第一课 Const</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%8C%E8%AF%BE-const-and-functions">第二课 Const and Functions</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%89%E8%AF%BE-rvalue-vs-lvalue">第三课 Rvalue vs. Lvalue</a></li>
 </ul>
 </li>
 </ul>
