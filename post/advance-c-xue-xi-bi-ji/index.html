@@ -56,7 +56,7 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
         </h1>
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2021-06-06 · 1 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2021-05-29 · 3 min read</div>
           
         </div>
         <div class="markdown mb-8" v-pre>
@@ -100,6 +100,40 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
 </li>
 </ul>
 <h2 id="第三课-rvalue-vs-lvalue">第三课 Rvalue vs. Lvalue</h2>
+<p>https://www.youtube.com/watch?v=UTUdhjzws5g</p>
+<ul>
+<li>左值 lvalue(addressable) - 表示了一个占据内存中某个可识别位置的对象。</li>
+<li>右值 rvalue - 所有不是左值的表达式都是右值，即不表示内存中某个可识别位置的对象表达式。</li>
+<li>例如 int x = 2 中，x 为左值，2为右值。
+<ul>
+<li>int *p = &amp;(i + 2); =&gt; Error</li>
+<li>i + 2 = 4; =&gt; Error</li>
+<li>2 = i; =&gt; Error</li>
+</ul>
+</li>
+<li>左值引用: int i; int &amp;r = i;</li>
+<li>右值引用: int &amp;r = 5; //Error 但可以 const int &amp;r = 5;</li>
+<li>左值右值可以互转：</li>
+</ul>
+<pre><code class="language-cpp">        // lvalue to rvalue example 
+        int i = 0;
+        int x = i + 2;
+        // rvalue to lvalue example
+        int v[3];
+        *(v+2) = 4;
+</code></pre>
+<ul>
+<li>常见错误理解：
+<ul>
+<li>函数和操作符(operator)的结果是右值。反例：函数返回引用，[] operator</li>
+<li>所有左值都可赋值修改。反例： const 的左值是不可赋值修改的。其余为可修改左值。</li>
+<li>所有右值都不可modify。反例：</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-cpp">        class dog;
+        dog().bark(); // bark() may change the state of the dog object.
+</code></pre>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
