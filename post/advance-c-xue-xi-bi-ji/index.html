@@ -56,7 +56,7 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
         </h1>
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2021-05-29 · 3 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2021-05-29 · 4 min read</div>
           
         </div>
         <div class="markdown mb-8" v-pre>
@@ -134,6 +134,55 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
 <pre><code class="language-cpp">        class dog;
         dog().bark(); // bark() may change the state of the dog object.
 </code></pre>
+<h2 id="第四课-logic-constness-and-bitwise-constness">第四课 Logic Constness and Bitwise Constness</h2>
+<p>https://www.youtube.com/watch?v=8A5AwX6XExw&amp;list=PLE28375D4AC946CC3&amp;index=3</p>
+<pre><code class="language-cpp">class BigArray {
+    vector&lt;int&gt; v; // huge vector
+    mutable int accessCounter;
+    int *v2; // 
+    public:
+       int getItem(int index) const {
+           accessCounter++; // mutable
+           return v[index];
+       }
+
+       void setV2Item(int index, int x)  {
+           *(v2+index) = x; //如改为const member function也可编译通过
+       }
+}
+</code></pre>
+<p>Compiler 只关心Bitwise Constness。需要认真设计来实现logic和bitwise的consistency。<br>
+我：get function应该是const的，虽然我改了个member variable。<br>
+编译器: 你别整那没用的。我只管你member variable有没有被改。</p>
+<h2 id="第五课-compiler-generated-functions">第五课 Compiler Generated Functions</h2>
+<ul>
+<li>天启四骑士（编译器会implicitly自动生成以下函数)
+<ul>
+<li>Copy Constructor （复制构造函数）</li>
+<li>Copy Assignment Operator （拷贝赋值运算符）</li>
+<li>Destructor （析构函数）</li>
+<li>Default Constructor （默认构造函数）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-cpp">class dog {
+    public:
+        dog(const dog &amp;rhs) {...}; // Member by member initialization
+        dog &amp;operator=(const dog &amp;rhs) {...}; // Member by member copying
+        dog() {...}; // 1. Call the base class's default constructor 2. Call data members' default constructor
+        ~dog() {...}; // 1. Call all base class's destructor 2. call data members' destructor
+};
+</code></pre>
+<p>当这些函数无法被生成时，则不生成。例：</p>
+<ul>
+<li>Copy Assignment Operator cannot copy const and reference members</li>
+<li>base class没有default constructor, 则子函数也无法生成default constructor。</li>
+</ul>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>所有的编译器自动生成的函数都是public且inline</li>
+<li>当它们需要被生成时（程序的其他地方调用了它们），编译器才会生成它们。</li>
+</ol>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -180,6 +229,8 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
 <li><a href="#%E7%AC%AC%E4%B8%80%E8%AF%BE-const">第一课 Const</a></li>
 <li><a href="#%E7%AC%AC%E4%BA%8C%E8%AF%BE-const-and-functions">第二课 Const and Functions</a></li>
 <li><a href="#%E7%AC%AC%E4%B8%89%E8%AF%BE-rvalue-vs-lvalue">第三课 Rvalue vs. Lvalue</a></li>
+<li><a href="#%E7%AC%AC%E5%9B%9B%E8%AF%BE-logic-constness-and-bitwise-constness">第四课 Logic Constness and Bitwise Constness</a></li>
+<li><a href="#%E7%AC%AC%E4%BA%94%E8%AF%BE-compiler-generated-functions">第五课 Compiler Generated Functions</a></li>
 </ul>
 </li>
 </ul>

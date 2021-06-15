@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yunma10.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-06-14T23:46:05.603Z</updated>
+    <updated>2021-06-15T05:45:31.246Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yunma10.github.io"/>
     <link rel="self" href="https://yunma10.github.io/atom.xml"/>
@@ -15,7 +15,7 @@
         <id>https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/</id>
         <link href="https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/">
         </link>
-        <updated>2021-05-30T01:49:19.000Z</updated>
+        <updated>2021-05-29T10:49:19.000Z</updated>
         <content type="html"><![CDATA[<h2 id="第一课-const">第一课 Const</h2>
 <p>https://www.youtube.com/watch?v=7arYbAhu0aw&amp;list=PLE28375D4AC946CC3</p>
 <ul>
@@ -90,6 +90,55 @@
 <pre><code class="language-cpp">        class dog;
         dog().bark(); // bark() may change the state of the dog object.
 </code></pre>
+<h2 id="第四课-logic-constness-and-bitwise-constness">第四课 Logic Constness and Bitwise Constness</h2>
+<p>https://www.youtube.com/watch?v=8A5AwX6XExw&amp;list=PLE28375D4AC946CC3&amp;index=3</p>
+<pre><code class="language-cpp">class BigArray {
+    vector&lt;int&gt; v; // huge vector
+    mutable int accessCounter;
+    int *v2; // 
+    public:
+       int getItem(int index) const {
+           accessCounter++; // mutable
+           return v[index];
+       }
+
+       void setV2Item(int index, int x)  {
+           *(v2+index) = x; //如改为const member function也可编译通过
+       }
+}
+</code></pre>
+<p>Compiler 只关心Bitwise Constness。需要认真设计来实现logic和bitwise的consistency。<br>
+我：get function应该是const的，虽然我改了个member variable。<br>
+编译器: 你别整那没用的。我只管你member variable有没有被改。</p>
+<h2 id="第五课-compiler-generated-functions">第五课 Compiler Generated Functions</h2>
+<ul>
+<li>天启四骑士（编译器会implicitly自动生成以下函数)
+<ul>
+<li>Copy Constructor （复制构造函数）</li>
+<li>Copy Assignment Operator （拷贝赋值运算符）</li>
+<li>Destructor （析构函数）</li>
+<li>Default Constructor （默认构造函数）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-cpp">class dog {
+    public:
+        dog(const dog &amp;rhs) {...}; // Member by member initialization
+        dog &amp;operator=(const dog &amp;rhs) {...}; // Member by member copying
+        dog() {...}; // 1. Call the base class's default constructor 2. Call data members' default constructor
+        ~dog() {...}; // 1. Call all base class's destructor 2. call data members' destructor
+};
+</code></pre>
+<p>当这些函数无法被生成时，则不生成。例：</p>
+<ul>
+<li>Copy Assignment Operator cannot copy const and reference members</li>
+<li>base class没有default constructor, 则子函数也无法生成default constructor。</li>
+</ul>
+<p><strong>注意</strong>：</p>
+<ol>
+<li>所有的编译器自动生成的函数都是public且inline</li>
+<li>当它们需要被生成时（程序的其他地方调用了它们），编译器才会生成它们。</li>
+</ol>
 ]]></content>
     </entry>
 </feed>
