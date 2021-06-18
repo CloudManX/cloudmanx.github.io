@@ -56,7 +56,7 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
         </h1>
         
         <div class="mb-8 flex flex-wrap">
-          <div class="text-gray-400 text-sm mr-4">2021-05-29 · 4 min read</div>
+          <div class="text-gray-400 text-sm mr-4">2021-05-27 · 8 min read</div>
           
         </div>
         <div class="markdown mb-8" v-pre>
@@ -155,6 +155,7 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
 我：get function应该是const的，虽然我改了个member variable。<br>
 编译器: 你别整那没用的。我只管你member variable有没有被改。</p>
 <h2 id="第五课-compiler-generated-functions">第五课 Compiler Generated Functions</h2>
+<p>https://www.youtube.com/watch?v=EL30-a2gblQ&amp;list=PLE28375D4AC946CC3&amp;index=4</p>
 <ul>
 <li>天启四骑士（编译器会implicitly自动生成以下函数)
 <ul>
@@ -183,6 +184,149 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
 <li>所有的编译器自动生成的函数都是public且inline</li>
 <li>当它们需要被生成时（程序的其他地方调用了它们），编译器才会生成它们。</li>
 </ol>
+<h2 id="第六课-disallow-functions">第六课 Disallow Functions</h2>
+<p>https://www.youtube.com/watch?v=ZiNGWHg5Z-o&amp;list=PLE28375D4AC946CC3&amp;index=5</p>
+<pre><code class="language-cpp">class OpenFile {
+    public:
+        OpenFile(string filename) {cout &lt;&lt; &quot;Open a file &quot; &lt;&lt; filename &lt;&lt; endl}
+        OpenFile(OpenFile &amp;rhs) == delete; // C++ 11 and above
+        voiud destroyMe() {delete this;} // calls the private destructor
+    private:
+        OpenFile(OpenFile &amp;rhs); // C++ 98, make the copy constructor private
+        ~OpenFile() {cout &lt;&lt; &quot;OpenFile destructed.&quot; &lt;&lt; endl;} // private destructor 
+};
+int main() {
+    OpenFile f(string(&quot;somefile&quot;));
+    OpenFile f2(f); // We want to avoid two OpenFile editing one single file =&gt; disable Copy constructor
+}
+</code></pre>
+<p>*当一个静态对象 out of scope的时候，默认的public destructor会被调用。此时private的destructor用法不合适。当对象为动态(new)时，我们可以通过这种方式强制将对象生成在栈上，来接余额宝贵的堆空间（embedded system）很常用。</p>
+<h2 id="第七课-virtual-destructor-and-smart-destructor">第七课 Virtual Destructor and Smart Destructor</h2>
+<p>https://www.youtube.com/watch?v=ZiNGWHg5Z-o&amp;list=PLE28375D4AC946CC3&amp;index=6</p>
+<ul>
+<li>方法一：Virtual Destructor</li>
+</ul>
+<pre><code class="language-cpp">class Dog {
+    public:
+    virtual ~Dog() { cout &lt;&lt; &quot;Dog destroyed&quot; &lt;&lt; endl;} //多态时， 只有设置了virtual destructor, 子类的destuctor才会被调用。
+};
+class YellowDog {
+    public:
+    ~YellowDog {cout &lt;&lt; &quot;Yellow dog destroyed&quot; &lt;&lt; endl;}
+};
+class DogFactory {
+    public: 
+    static Dog *createYellowDog() { return new YellowDog(); }
+};
+int main() {
+    Dog *pd = DogFactory::createYellowDog();
+    delete pd;
+    return 0;
+}
+</code></pre>
+<ul>
+<li>方法二：Smart Destructor</li>
+</ul>
+<pre><code class="language-cpp">class Dog {
+    public:
+    ~Dog() { cout &lt;&lt; &quot;Dog destroyed&quot; &lt;&lt; endl;} 
+};
+class YellowDog {
+    public:
+    ~YellowDog {cout &lt;&lt; &quot;Yellow dog destroyed&quot; &lt;&lt; endl;}
+};
+class DogFactory {
+    public: 
+    static shared_ptr&lt;Dog&gt; createYellowDog() { return shared_ptr&lt;YellowDog&gt;(new YellowDog()); }
+};
+int main() {
+    shared_ptr&lt;Dog&gt; pd = DogFactory::createYellowDog();
+    return 0;
+}
+*注意，所有的STL Object都没有virtual析构函数，继承时要小心。
+</code></pre>
+<h2 id="第八课-exceptions-in-destructors">第八课 Exceptions in Destructors</h2>
+<p>https://www.youtube.com/watch?v=LQMYwvM8RF8&amp;list=PLE28375D4AC946CC3&amp;index=7</p>
+<pre><code class="language-cpp">class dog {
+    public: 
+    string m_name;
+    dog(string name) { m_name = name; cout &lt;&lt; name &lt;&lt; &quot;is spawn.&quot; &lt;&lt; endl; }
+    ~dog() { cout &lt;&lt; m_name &lt;&lt; &quot; is defeated.\n&quot; &lt;&lt; endl; }
+    void bark() { ... }
+};
+int main() {
+    try {
+        dog dog1(&quot;Texas&quot;);
+        dog dog2(&quot;Lappland&quot;);
+        throw 20;
+        dog1.bark();
+        dog2.bark();
+    } catch (int e) {
+        catch &lt;&lt; e &lt;&lt; &quot; is caught&quot; &lt;&lt; endl;
+    }
+}
+</code></pre>
+<p>OUTPUT:<br>
+Texas is spawn.<br>
+Lappland is spawn.<br>
+Lappland is defeated.<br>
+Texas is defeated.<br>
+20 is caught.</p>
+<pre><code class="language-cpp">class dog {
+    public: 
+    string m_name;
+    dog(string name) { m_name = name; cout &lt;&lt; name &lt;&lt; &quot;is spawn.&quot; &lt;&lt; endl; }
+    ~dog() { cout &lt;&lt; m_name &lt;&lt; &quot; is defeated.\n&quot; &lt;&lt; endl;  throw 20; }
+    void bark() { ... }
+};
+int main() {
+    try {
+        dog dog1(&quot;Texas&quot;);
+        dog dog2(&quot;Lappland&quot;);
+        dog1.bark();
+        dog2.bark();
+    } catch (int e) {
+        catch &lt;&lt; e &lt;&lt; &quot; is caught&quot; &lt;&lt; endl;
+    }
+}
+</code></pre>
+<ul>
+<li>程序会崩溃。因为在进入到catch的scope之前，两个dog都会调用析构函数，届时会有两个pending的exeception。</li>
+<li>解决方案：
+<ol>
+<li>将try catch加入destructor。</li>
+<li>将容易触发exception的代码放入另一个函数。</li>
+</ol>
+</li>
+</ul>
+<h2 id="第九课-virtual-function-in-constructor-or-destructor">第九课 Virtual Function in Constructor or Destructor</h2>
+<p>https://www.youtube.com/watch?v=LQMYwvM8RF8&amp;list=PLE28375D4AC946CC3&amp;index=8</p>
+<pre><code class="language-cpp">class Dog {
+    public:
+    Dog() {cout &lt;&lt; &quot;Dog is born.&quot; &lt;&lt; endl; bark(); }
+    virtual void bard() { cout &lt;&lt; &quot;I am just a dog.&quot; &lt;&lt; endl; }
+    void seeCat() { bark(); }
+    ~Dog() { bark(); }
+};
+
+class YellowDog: public Dog {
+    public:
+    Yellowdog { cout &lt;&lt; &quot;Yellow dog is born&quot; &lt;&lt; endl;}
+    virtual void bark() { cout &lt;&lt; &quot;I am a yellow dog&quot; &lt;&lt; endl; } // 若将 virtual 关键字省掉，依旧是虚拟函数。写在这里是为了explicitly声明。
+};
+
+int main() {
+    Yellodog d;
+    d.seeCat(); return 0;
+}
+</code></pre>
+<p>Output:<br>
+Dog is born.<br>
+I am just a dog.<br>
+Yellow dog is born.<br>
+I am a yellow dog.<br>
+I am just a dog.</p>
+<p>尽量避免在Constructor和Destructor里调用虚拟函数。</p>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -231,6 +375,10 @@ ptr to const(在*左侧) vs. const ptr(在*右侧...">
 <li><a href="#%E7%AC%AC%E4%B8%89%E8%AF%BE-rvalue-vs-lvalue">第三课 Rvalue vs. Lvalue</a></li>
 <li><a href="#%E7%AC%AC%E5%9B%9B%E8%AF%BE-logic-constness-and-bitwise-constness">第四课 Logic Constness and Bitwise Constness</a></li>
 <li><a href="#%E7%AC%AC%E4%BA%94%E8%AF%BE-compiler-generated-functions">第五课 Compiler Generated Functions</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AD%E8%AF%BE-disallow-functions">第六课 Disallow Functions</a></li>
+<li><a href="#%E7%AC%AC%E4%B8%83%E8%AF%BE-virtual-destructor-and-smart-destructor">第七课 Virtual Destructor and Smart Destructor</a></li>
+<li><a href="#%E7%AC%AC%E5%85%AB%E8%AF%BE-exceptions-in-destructors">第八课 Exceptions in Destructors</a></li>
+<li><a href="#%E7%AC%AC%E4%B9%9D%E8%AF%BE-virtual-function-in-constructor-or-destructor">第九课 Virtual Function in Constructor or Destructor</a></li>
 </ul>
 </li>
 </ul>
