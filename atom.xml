@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yunma10.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-08-31T02:12:57.991Z</updated>
+    <updated>2021-08-31T02:14:15.278Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yunma10.github.io"/>
     <link rel="self" href="https://yunma10.github.io/atom.xml"/>
@@ -15,10 +15,10 @@
         <id>https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/</id>
         <link href="https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/">
         </link>
-        <updated>2021-08-29T18:35:07.000Z</updated>
+        <updated>2021-08-29T03:35:07.000Z</updated>
         <content type="html"><![CDATA[<h2 id="gpu-内存架构">GPU 内存架构</h2>
 <h2 id="gpu-内存架">GPU 内存架</h2>
-<figure data-type="image" tabindex="1"><img src="https://drive.google.com/file/d/1v1RQ8kmVbjyF7ayAZrXtVzWSnehFlMBd/view?usp=sharing" alt="GPU Memories" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://yunma10.github.io/post-images/1630376038554.gif" alt="GPU Memories" loading="lazy"></figure>
 <h3 id="global-memory">Global Memory</h3>
 <ul>
 <li>一个在GPU上的主要内存。</li>
