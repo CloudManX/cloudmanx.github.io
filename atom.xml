@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yunma10.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-06-19T00:31:52.995Z</updated>
+    <updated>2021-08-31T01:59:00.946Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yunma10.github.io"/>
     <link rel="self" href="https://yunma10.github.io/atom.xml"/>
@@ -11,11 +11,70 @@
     <icon>https://yunma10.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yunhan的博客</rights>
     <entry>
+        <title type="html"><![CDATA[CUDA与并行编程基础]]></title>
+        <id>https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/</id>
+        <link href="https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/">
+        </link>
+        <updated>2021-08-30T09:35:07.000Z</updated>
+        <content type="html"><![CDATA[<h2 id="gpu-内存架构">GPU 内存架构</h2>
+<h2 id="gpu-内存架">GPU 内存架</h2>
+<figure data-type="image" tabindex="1"><img src="https://drive.google.com/file/d/1v1RQ8kmVbjyF7ayAZrXtVzWSnehFlMBd/view?usp=sharing" alt="" loading="lazy"></figure>
+<h3 id="global-memory">Global Memory</h3>
+<ul>
+<li>一个在GPU上的主要内存。</li>
+<li>在GPU上存在大量Global Memory。所有的运行中的线程都可从Global Memory中读取信息。</li>
+<li>所有的地址都是Byte Addressable。</li>
+<li>读写速度最慢。</li>
+</ul>
+<h3 id="local-mmeory">Local Mmeory</h3>
+<ul>
+<li>另一个在GPU上的主要内存。</li>
+<li>当没有足够的寄存器时，每个线程会调用Local Memory (被称作Register Spilling)。</li>
+<li>Addresssable，被用于不被常量indexed数组。</li>
+<li>每个线程有独立的 Local Memory。</li>
+</ul>
+<h3 id="caches">Caches</h3>
+<ul>
+<li>L1， L2 Cache作用于Global Memory和Local Memory。</li>
+<li>L1 和 Shared Memory共享地址，并且Configable它们的具体分配。</li>
+<li>所有的 Global Memory 读写都通过L2 Cache，包括CPU的读写请求。</li>
+</ul>
+<h3 id="shared-memory">Shared Memory</h3>
+<ul>
+<li>速度仅次于寄存器（registers），在同一个Block内的线程中被共享。</li>
+</ul>
+<h3 id="constant-memory">Constant Memory</h3>
+<ul>
+<li>只读并拥有自己的Cache。</li>
+</ul>
+<h3 id="texture-memory">Texture Memory</h3>
+<ul>
+<li>同样拥有自己的Cache。（Read-Only to GPU， Sets Up by CPU)</li>
+<li>有一些额外的关于Addressing的奇技淫巧，方便一些如interpolation的计算。</li>
+</ul>
+<h3 id="streams-multiprocessorssm">Streams Multiprocessors(SM)</h3>
+<h3 id="warp-和-active-block-及-线程数量">Warp 和 Active Block 及 线程数量。</h3>
+<ul>
+<li>Warp是Scheduler执行的基本单元。每个Warp拥有32个线程</li>
+<li>一个重要的提高GPU效率的方法为Latency Hidden，即当某些“远程”资源（例如贴图纹理）的读取没有到位时，可通过Context Switch来运行别的线程Warp使GPU占有率保持在一定数值。当资源到位时，可转换会之前的Warp继续运行。</li>
+<li>高占有率（High Occupancy）需要足够的Warp数量:
+<ul>
+<li>反例1， 每个block里thread数量太少：当一个Block只有一个Warp（32 threads）， 由于每个SM最多支持16个active blocks，所以也只有16个active warp。当前硬件支持64-128个active Warp。</li>
+<li>反例2， 每个block里thread数量太多：由于register总数量限制，则active blocks的数量将被迫减少，同业也导致active warp的数量减少。</li>
+<li>一般选用 128 - 512 threads per block</li>
+</ul>
+</li>
+</ul>
+<h3 id="__syncthreads">__syncthreads()</h3>
+<p>通过__syncthreads来确保每一段cuda代码所加载的资源完全已经准备好</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Advance C++ 学习笔记]]></title>
         <id>https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/</id>
         <link href="https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/">
         </link>
-        <updated>2021-05-28T04:49:19.000Z</updated>
+        <updated>2021-05-27T13:49:19.000Z</updated>
         <content type="html"><![CDATA[<h2 id="第一课-const">第一课 Const</h2>
 <p>https://www.youtube.com/watch?v=7arYbAhu0aw&amp;list=PLE28375D4AC946CC3</p>
 <ul>
@@ -283,6 +342,7 @@ Yellow dog is born.<br>
 I am a yellow dog.<br>
 I am just a dog.</p>
 <p>尽量避免在Constructor和Destructor里调用虚拟函数。</p>
+<h2 id="第十课-resource-acquisition-is-initialization">第十课 Resource Acquisition is Initialization</h2>
 ]]></content>
     </entry>
 </feed>
