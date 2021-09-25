@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://yunma10.github.io</id>
+    <id>https://cloudmanx.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-09-25T20:15:03.027Z</updated>
+    <updated>2021-09-25T20:17:29.817Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://yunma10.github.io"/>
-    <link rel="self" href="https://yunma10.github.io/atom.xml"/>
+    <link rel="alternate" href="https://cloudmanx.github.io"/>
+    <link rel="self" href="https://cloudmanx.github.io/atom.xml"/>
     <subtitle>学习生活记录</subtitle>
-    <logo>https://yunma10.github.io/images/avatar.png</logo>
-    <icon>https://yunma10.github.io/favicon.ico</icon>
+    <logo>https://cloudmanx.github.io/images/avatar.png</logo>
+    <icon>https://cloudmanx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yunhan的博客</rights>
     <entry>
         <title type="html"><![CDATA[C++ 知识随笔]]></title>
-        <id>https://yunma10.github.io/post/c-knowledges/</id>
-        <link href="https://yunma10.github.io/post/c-knowledges/">
+        <id>https://cloudmanx.github.io/post/c-knowledges/</id>
+        <link href="https://cloudmanx.github.io/post/c-knowledges/">
         </link>
         <updated>2021-09-24T13:45:02.000Z</updated>
         <content type="html"><![CDATA[<h1 id="multithread">Multithread</h1>
@@ -81,8 +81,8 @@ vec.push_back(5); //右值
     </entry>
     <entry>
         <title type="html"><![CDATA[CUDA与并行编程基础]]></title>
-        <id>https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/</id>
-        <link href="https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/">
+        <id>https://cloudmanx.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/</id>
+        <link href="https://cloudmanx.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/">
         </link>
         <updated>2021-08-28T12:35:07.000Z</updated>
         <content type="html"><![CDATA[<h2 id="gpu-内存架构">GPU 内存架构</h2>
@@ -141,8 +141,8 @@ vec.push_back(5); //右值
     </entry>
     <entry>
         <title type="html"><![CDATA[Advance C++ 学习笔记]]></title>
-        <id>https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/</id>
-        <link href="https://yunma10.github.io/post/advance-c-xue-xi-bi-ji/">
+        <id>https://cloudmanx.github.io/post/advance-c-xue-xi-bi-ji/</id>
+        <link href="https://cloudmanx.github.io/post/advance-c-xue-xi-bi-ji/">
         </link>
         <updated>2021-05-27T13:49:19.000Z</updated>
         <content type="html"><![CDATA[<h2 id="第一课-const">第一课 Const</h2>
