@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cloudmanx.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-09-25T20:19:07.363Z</updated>
+    <updated>2021-09-25T20:19:44.491Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cloudmanx.github.io"/>
     <link rel="self" href="https://cloudmanx.github.io/atom.xml"/>
@@ -28,6 +28,8 @@
 <li>强制异步：std::async(std::launch::async | std::launch::deferred), return一个future</li>
 <li>上锁：</li>
 </ul>
+</li>
+</ul>
 <pre><code class="language-cpp">std::mutex mu0, mu1; // usually global
 
 std::lock(mu0, mu1) // Ensures locking order and avoids deadlock 
@@ -43,11 +45,8 @@ locker.unlock();
 
 std::unique_lock&lt;mutex&gt; locker2 = std::move(locker); // Use move semantics to transfer the ownership
 </code></pre>
-<ul>
-<li>std::condition_variable, notify_one, notify_all。提供更灵活的线程间的交流。Queue的例子</li>
-</ul>
-</li>
-</ul>
+<pre><code>* std::condition_variable, notify_one, notify_all。提供更灵活的线程间的交流。Queue的例子
+</code></pre>
 <h1 id="move-semanitics-and-right-value-reference">Move Semanitics and Right Value Reference</h1>
 <ul>
 <li>相关知识点： 左值右值， 深浅拷贝</li>
