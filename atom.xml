@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://yunma10.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-08-31T03:09:41.466Z</updated>
+    <updated>2021-09-25T20:13:55.505Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://yunma10.github.io"/>
     <link rel="self" href="https://yunma10.github.io/atom.xml"/>
@@ -10,6 +10,75 @@
     <logo>https://yunma10.github.io/images/avatar.png</logo>
     <icon>https://yunma10.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yunhan的博客</rights>
+    <entry>
+        <title type="html"><![CDATA[C++ 知识随笔]]></title>
+        <id>https://yunma10.github.io/post/c-knowledges/</id>
+        <link href="https://yunma10.github.io/post/c-knowledges/">
+        </link>
+        <updated>2021-09-24T13:45:02.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="multithread">Multithread</h1>
+<ul>
+<li>线程局部存储：thread_local, __declspec(thread), __thread</li>
+<li>强制内存读取：<code>volatile</code></li>
+<li><code>std::atomic</code></li>
+<li>C++ 线程：
+<ul>
+<li><code>std::thread::join()</code></li>
+<li>如果需要在调用线程和新线程之间同步数据，则可以使用C++的std::promise和std::future等机制</li>
+<li>强制异步：std::async(std::launch::async | std::launch::deferred), return一个future</li>
+<li>上锁：</li>
+</ul>
+<pre><code class="language-cpp">std::mutex mu0, mu1; // usually global
+
+std::lock(mu0, mu1) // Ensures locking order and avoids deadlock 
+std::lock_guard&lt;mutex&gt; locker0(mu0);
+std::lock_guard&lt;mutex&gt; locker1(mu1);
+
+std::unique_lock&lt;mutex&gt; locker(_mu, std::defer_lock); // Gives more flexibility, but more overhead
+
+locker.lock();
+// Operators that you want to protect
+// ...
+locker.unlock();
+
+std::unique_lock&lt;mutex&gt; locker2 = std::move(locker); // Use move semantics to transfer the ownership
+</code></pre>
+<ul>
+<li>std::condition_variable, notify_one, notify_all。提供更灵活的线程间的交流。Queue的例子</li>
+</ul>
+</li>
+</ul>
+<h1 id="move-semanitics-and-right-value-reference">Move Semanitics and Right Value Reference</h1>
+<ul>
+<li>相关知识点： 左值右值， 深浅拷贝</li>
+<li>推荐详细阅读： https://zhuanlan.zhihu.com/p/335994370</li>
+</ul>
+<h3 id="右值引用right-value-reference的作用是什么什么时候可以用到">右值引用(Right Value Reference)的作用是什么？什么时候可以用到？</h3>
+<ul>
+<li>右值引用是C++ 11引入的概念。常用于<strong>移动语义</strong>，主要目的是避免<strong>深</strong>拷贝。在传统的左值传参的基础上，右值传参使这一行为更加灵活。</li>
+<li>移动语义：将拷贝的数据移动而非复制，避免多余的拷贝。例如：</li>
+</ul>
+<pre><code class="language-cpp">// std::vector方法定义
+void push_back (const value_type&amp; val); //左值
+void push_back (value_type&amp;&amp; val); // 右值
+ 
+void emplace_back (Args&amp;&amp;... args); //右值
+
+// 即可pushback 左值， 也可pushback 右值
+std::vector&lt;int&gt; vec;
+int a = 5;
+vec.push_back(a); //左值
+vec.push_back(5); //右值
+</code></pre>
+<h3 id="为什么移动语义需要右值引用呢为什么不能用左值引用呢">为什么移动语义需要右值引用呢，为什么不能用左值引用呢？</h3>
+<ol>
+<li>第二个形参：不优雅，需要额外参数 <code>Array&amp; operator=(const Array&amp; temp_array, bool move)</code></li>
+<li>第一个形参：加 const 无法清空<strong>被拷贝</strong>者（temp_arrray)， 不加 const 无法传入右值。</li>
+</ol>
+<h3 id="stdmove和stdforward是干什么用的呢">std::move和std::forward是干什么用的呢？</h3>
+<p>*将左值转为右值。std::foward主要用于模板编程的参数转发， 不常用到。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[CUDA与并行编程基础]]></title>
         <id>https://yunma10.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/</id>
