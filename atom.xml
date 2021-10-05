@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cloudmanx.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-10-05T05:24:23.305Z</updated>
+    <updated>2021-10-05T05:26:29.252Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cloudmanx.github.io"/>
     <link rel="self" href="https://cloudmanx.github.io/atom.xml"/>
@@ -10,15 +10,6 @@
     <logo>https://cloudmanx.github.io/images/avatar.png</logo>
     <icon>https://cloudmanx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yunhan的博客</rights>
-    <entry>
-        <title type="html"><![CDATA[Gamma Correction]]></title>
-        <id>https://cloudmanx.github.io/post/gamma-correction/</id>
-        <link href="https://cloudmanx.github.io/post/gamma-correction/">
-        </link>
-        <updated>2021-10-04T14:13:01.000Z</updated>
-        <content type="html"><![CDATA[<p>d</p>
-]]></content>
-    </entry>
     <entry>
         <title type="html"><![CDATA[Normal Transformation ]]></title>
         <id>https://cloudmanx.github.io/post/normal-transformation/</id>
@@ -48,6 +39,16 @@ n^TQ^TMt = 0
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Gamma Correction]]></title>
+        <id>https://cloudmanx.github.io/post/gamma-correction/</id>
+        <link href="https://cloudmanx.github.io/post/gamma-correction/">
+        </link>
+        <updated>2021-10-03T23:13:01.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="gamma校准">Gamma校准</h1>
+<figure data-type="image" tabindex="1"><img src="https://drive.google.com/uc?export=download&amp;id=1IKcodgZv3UE2KCeXSi3XV0RmqQT8DFGC" alt="Gamma Notes" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Rendering PipeLine 知识整理]]></title>
         <id>https://cloudmanx.github.io/post/Rendering/</id>
         <link href="https://cloudmanx.github.io/post/Rendering/">
@@ -60,6 +61,9 @@ n^TQ^TMt = 0
 <h3 id="投影shadows">投影(Shadows)</h3>
 <h3 id="gpu优化gpu-optimizations">GPU优化(GPU Optimizations)</h3>
 <h3 id="未分类uncategorized">未分类(Uncategorized)</h3>
+<ul>
+<li><a href="https://cloudmanx.github.io/post/gamma-correction">Gamma校准</a></li>
+</ul>
 <h3 id="学习资源recommended-resources">学习资源(Recommended Resources)</h3>
 <ul>
 <li><a href="https://catlikecoding.com/unity/tutorials/custom-srp/">Unity3D自定义SRP</a></li>
