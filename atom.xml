@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cloudmanx.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-10-05T06:28:56.430Z</updated>
+    <updated>2021-10-05T06:55:12.716Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cloudmanx.github.io"/>
     <link rel="self" href="https://cloudmanx.github.io/atom.xml"/>
@@ -11,21 +11,39 @@
     <icon>https://cloudmanx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yunhan的博客</rights>
     <entry>
-        <title type="html"><![CDATA[Directional Shadow]]></title>
-        <id>https://cloudmanx.github.io/post/directional-shadow/</id>
-        <link href="https://cloudmanx.github.io/post/directional-shadow/">
-        </link>
-        <updated>2021-10-04T14:37:11.000Z</updated>
-        <content type="html"><![CDATA[<p>ds</p>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[PBR]]></title>
         <id>https://cloudmanx.github.io/post/pbr/</id>
         <link href="https://cloudmanx.github.io/post/pbr/">
         </link>
         <updated>2021-10-04T14:37:02.000Z</updated>
         <content type="html"><![CDATA[<p>pbr</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Directional Shadow]]></title>
+        <id>https://cloudmanx.github.io/post/directional-shadow/</id>
+        <link href="https://cloudmanx.github.io/post/directional-shadow/">
+        </link>
+        <updated>2021-10-03T23:37:11.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="方向光投影">方向光投影</h1>
+<h3 id="一篇非常优秀的关于shadowbias的总结"><a href="https://zhuanlan.zhihu.com/p/370951892">一篇非常优秀的关于ShadowBias的总结</a></h3>
+<ul>
+<li>PCF 为什么会对Shadow Bias的大小取值有影响？
+<ul>
+<li>答： 因为PCF会filter多个Shadow Map上的Texel, 所以要保证ShadowBias可以照顾所有Texel到光源近平面(Light View Near Plane)的距离小于Depth。</li>
+</ul>
+</li>
+<li>ShadowCaster Vertex Based Bias (SCVBB)的优劣有哪些？
+<ul>
+<li>答：将Shadow Bias的计算放入ShadowCaster Pass可节约成本。但Caster阶段的反向Normal Bias与Receive阶段算NormalBias不是一回事。</li>
+<li>文章中关于SCVBB的示意图。Cast的时候为AB的normal，Receive的时候为AD的normal。<br>
+<img src="https://pic3.zhimg.com/80/v2-9a8bf9b4068322279e46ae6351b81b8a_720w.jpg" alt="SCVBB" loading="lazy"></li>
+<li>Unity SRP中，<a href="https://docs.unity3d.com/ScriptReference/Rendering.CommandBuffer.SetGlobalDepthBias.html">CommandBuffer.SetGlobalDepthBias</a>就是SCVBB的实现（应该？）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="cascaded-shadowmap">Cascaded ShadowMap</h3>
+<h3 id="dithering">Dithering</h3>
 ]]></content>
     </entry>
     <entry>

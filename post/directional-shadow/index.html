@@ -7,7 +7,7 @@
 <meta name="description" content="学习生活记录">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-<link rel="shortcut icon" href="https://cloudmanx.github.io/favicon.ico?v=1633415330714">
+<link rel="shortcut icon" href="https://cloudmanx.github.io/favicon.ico?v=1633416890904">
 
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css" />
@@ -83,12 +83,30 @@
           <article class="article">
             <h1>Directional Shadow</h1>
             <p class="article-meta">
-              2021-10-04
+              2021-10-03
               
             </p>
             
             <div class="post-content">
-              <p>ds</p>
+              <h1 id="方向光投影">方向光投影</h1>
+<h3 id="一篇非常优秀的关于shadowbias的总结"><a href="https://zhuanlan.zhihu.com/p/370951892">一篇非常优秀的关于ShadowBias的总结</a></h3>
+<ul>
+<li>PCF 为什么会对Shadow Bias的大小取值有影响？
+<ul>
+<li>答： 因为PCF会filter多个Shadow Map上的Texel, 所以要保证ShadowBias可以照顾所有Texel到光源近平面(Light View Near Plane)的距离小于Depth。</li>
+</ul>
+</li>
+<li>ShadowCaster Vertex Based Bias (SCVBB)的优劣有哪些？
+<ul>
+<li>答：将Shadow Bias的计算放入ShadowCaster Pass可节约成本。但Caster阶段的反向Normal Bias与Receive阶段算NormalBias不是一回事。</li>
+<li>文章中关于SCVBB的示意图。Cast的时候为AB的normal，Receive的时候为AD的normal。<br>
+<img src="https://pic3.zhimg.com/80/v2-9a8bf9b4068322279e46ae6351b81b8a_720w.jpg" alt="SCVBB" loading="lazy"></li>
+<li>Unity SRP中，<a href="https://docs.unity3d.com/ScriptReference/Rendering.CommandBuffer.SetGlobalDepthBias.html">CommandBuffer.SetGlobalDepthBias</a>就是SCVBB的实现（应该？）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="cascaded-shadowmap">Cascaded ShadowMap</h3>
+<h3 id="dithering">Dithering</h3>
 
             </div>
           </article>
@@ -99,9 +117,9 @@
               <div class="next">
                 下一篇
               </div>
-              <a href="https://cloudmanx.github.io/post/pbr/">
+              <a href="https://cloudmanx.github.io/post/base-rendering-model/">
                 <h3 class="post-title">
-                  PBR
+                  Base Rendering Model
                 </h3>
               </a>
             </div>
@@ -112,7 +130,7 @@
 
       <div class="sm-12 md-4 col sidebar">
   <div class="paper info-container">
-    <img src="https://cloudmanx.github.io/images/avatar.png?v=1633415330714" class="no-responsive avatar">
+    <img src="https://cloudmanx.github.io/images/avatar.png?v=1633416890904" class="no-responsive avatar">
     <div class="text-muted">学习生活记录</div>
     <div class="social-container">
       
@@ -137,13 +155,13 @@
         
           
             <li>
-              <a href="https://cloudmanx.github.io/post/directional-shadow/">Directional Shadow</a>
+              <a href="https://cloudmanx.github.io/post/pbr/">PBR</a>
             </li>
           
         
           
             <li>
-              <a href="https://cloudmanx.github.io/post/pbr/">PBR</a>
+              <a href="https://cloudmanx.github.io/post/directional-shadow/">Directional Shadow</a>
             </li>
           
         
