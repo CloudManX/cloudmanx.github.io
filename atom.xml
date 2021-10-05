@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cloudmanx.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-10-05T05:43:42.218Z</updated>
+    <updated>2021-10-05T06:24:43.626Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cloudmanx.github.io"/>
     <link rel="self" href="https://cloudmanx.github.io/atom.xml"/>
@@ -68,16 +68,6 @@ n^TQ^TMt = 0
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Gamma Correction]]></title>
-        <id>https://cloudmanx.github.io/post/gamma-correction/</id>
-        <link href="https://cloudmanx.github.io/post/gamma-correction/">
-        </link>
-        <updated>2021-10-03T23:13:01.000Z</updated>
-        <content type="html"><![CDATA[<h1 id="gamma校准">Gamma校准</h1>
-<figure data-type="image" tabindex="1"><img src="https://drive.google.com/uc?export=download&amp;id=1IKcodgZv3UE2KCeXSi3XV0RmqQT8DFGC" alt="Gamma Notes" loading="lazy"></figure>
-]]></content>
-    </entry>
-    <entry>
         <title type="html"><![CDATA[Rendering PipeLine 知识整理]]></title>
         <id>https://cloudmanx.github.io/post/Rendering/</id>
         <link href="https://cloudmanx.github.io/post/Rendering/">
@@ -112,6 +102,16 @@ n^TQ^TMt = 0
 <li><a href="https://zhuanlan.zhihu.com/p/36675543">YivanLee大佬的虚幻渲染编程专题</a></li>
 <li><a href="https://www.cnblogs.com/timlly/p/13512787.html">剖析虚幻渲染体系</a></li>
 </ul>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Gamma Correction]]></title>
+        <id>https://cloudmanx.github.io/post/gamma-correction/</id>
+        <link href="https://cloudmanx.github.io/post/gamma-correction/">
+        </link>
+        <updated>2021-10-02T17:13:01.000Z</updated>
+        <content type="html"><![CDATA[<h1 id="gamma校准">Gamma校准</h1>
+<figure data-type="image" tabindex="1"><img src="https://cloudmanx.github.io/post-images/1633415048448.JPG" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
     <entry>
