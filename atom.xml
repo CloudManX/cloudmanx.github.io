@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://cloudmanx.github.io</id>
     <title>Yunhan的博客</title>
-    <updated>2021-10-05T05:26:29.252Z</updated>
+    <updated>2021-10-05T05:43:21.075Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://cloudmanx.github.io"/>
     <link rel="self" href="https://cloudmanx.github.io/atom.xml"/>
@@ -11,6 +11,33 @@
     <icon>https://cloudmanx.github.io/favicon.ico</icon>
     <rights>All rights reserved 2021, Yunhan的博客</rights>
     <entry>
+        <title type="html"><![CDATA[Directional Shadow]]></title>
+        <id>https://cloudmanx.github.io/post/directional-shadow/</id>
+        <link href="https://cloudmanx.github.io/post/directional-shadow/">
+        </link>
+        <updated>2021-10-04T14:37:11.000Z</updated>
+        <content type="html"><![CDATA[<p>ds</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[PBR]]></title>
+        <id>https://cloudmanx.github.io/post/pbr/</id>
+        <link href="https://cloudmanx.github.io/post/pbr/">
+        </link>
+        <updated>2021-10-04T14:37:02.000Z</updated>
+        <content type="html"><![CDATA[<p>pbr</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Base Rendering Model]]></title>
+        <id>https://cloudmanx.github.io/post/base-rendering-model/</id>
+        <link href="https://cloudmanx.github.io/post/base-rendering-model/">
+        </link>
+        <updated>2021-10-04T14:36:47.000Z</updated>
+        <content type="html"><![CDATA[<p>d</p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Normal Transformation ]]></title>
         <id>https://cloudmanx.github.io/post/normal-transformation/</id>
         <link href="https://cloudmanx.github.io/post/normal-transformation/">
@@ -18,7 +45,7 @@
         <updated>2021-10-04T13:43:21.000Z</updated>
         <content type="html"><![CDATA[<h1 id="法线的矩阵变换">法线的矩阵变换</h1>
 <h3 id="为什么发现要单独变换">为什么发现要单独变换？</h3>
-<p>图例</p>
+<figure data-type="image" tabindex="1"><img src="https://drive.google.com/uc?export=download&amp;id=1kpHDqG54C9dF0YyrDcMwsu_Yj8TDPuly" alt="normal_trans_notes" loading="lazy"></figure>
 <h3 id="变换公式推导">变换公式推导</h3>
 <p>假设有一个物体，设其变换矩阵为 M, 求该物体上法线N向量相应的变换矩阵 Q:<br>
 我们知道对于法线N，它的切线的向量T的变换矩阵是正常的，为M。由此可得：</p>
@@ -57,6 +84,9 @@ n^TQ^TMt = 0
         <content type="html"><![CDATA[<p>本页面为渲染相关知识总结和记录。缓慢填坑中。。。</p>
 <h1 id="目录归类">目录归类</h1>
 <h3 id="线性代数及矩阵变换linear-algebramatrix-transformation">线性代数及矩阵变换(Linear Algebra/Matrix Transformation)</h3>
+<ul>
+<li><a href="https://cloudmanx.github.io/post/normal-transformation">法线变换</a></li>
+</ul>
 <h3 id="光照lighting">光照(Lighting)</h3>
 <h3 id="投影shadows">投影(Shadows)</h3>
 <h3 id="gpu优化gpu-optimizations">GPU优化(GPU Optimizations)</h3>
