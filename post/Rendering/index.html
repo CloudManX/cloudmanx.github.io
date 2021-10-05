@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" >
 
-<title>C++ 知识随笔 | Yunhan的博客</title>
+<title>Rendering PipeLine 知识整理 | Yunhan的博客</title>
 <meta name="description" content="学习生活记录">
 
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -81,74 +81,25 @@
       <div class="sm-12 md-8 col">
         <div class="paper">
           <article class="article">
-            <h1>C++ 知识随笔</h1>
+            <h1>Rendering PipeLine 知识整理</h1>
             <p class="article-meta">
-              2021-09-24
+              2021-10-03
               
             </p>
             
             <div class="post-content">
-              <h1 id="multithread">Multithread</h1>
+              <p>本页面为渲染相关知识总结和记录。缓慢填坑中。。。</p>
+<h1 id="目录归类">目录归类</h1>
+<h3 id="线性代数及矩阵变换linear-algebramatrix-transformation">线性代数及矩阵变换(Linear Algebra/Matrix Transformation)</h3>
+<h3 id="光照lighting">光照(Lighting)</h3>
+<h3 id="投影shadows">投影(Shadows)</h3>
+<h3 id="gpu优化gpu-optimizations">GPU优化(GPU Optimizations)</h3>
+<h3 id="未分类uncategorized">未分类(Uncategorized)</h3>
+<h3 id="学习资源recommended-resources">学习资源(Recommended Resources)</h3>
 <ul>
-<li>线程局部存储：thread_local, __declspec(thread), __thread</li>
-<li>强制内存读取：<code>volatile</code></li>
-<li><code>std::atomic</code></li>
-<li>C++ 线程：
-<ul>
-<li><code>std::thread::join()</code></li>
-<li>如果需要在调用线程和新线程之间同步数据，则可以使用C++的std::promise和std::future等机制</li>
-<li>强制异步：std::async(std::launch::async | std::launch::deferred), return一个future</li>
-<li>上锁：</li>
-</ul>
-</li>
-</ul>
-<pre><code class="language-cpp">std::mutex mu0, mu1; // usually global
-
-std::lock(mu0, mu1) // Ensures locking order and avoids deadlock 
-std::lock_guard&lt;mutex&gt; locker0(mu0);
-std::lock_guard&lt;mutex&gt; locker1(mu1);
-
-std::unique_lock&lt;mutex&gt; locker(_mu, std::defer_lock); // Gives more flexibility, but more overhead
-
-locker.lock();
-// Operators that you want to protect
-// ...
-locker.unlock();
-
-std::unique_lock&lt;mutex&gt; locker2 = std::move(locker); // Use move semantics to transfer the ownership
-</code></pre>
-<pre><code>* std::condition_variable, notify_one, notify_all。提供更灵活的线程间的交流。Queue的例子
-</code></pre>
-<h1 id="move-semanitics-and-right-value-reference">Move Semanitics and Right Value Reference</h1>
-<ul>
-<li>相关知识点： 左值右值， 深浅拷贝</li>
-<li>推荐详细阅读： https://zhuanlan.zhihu.com/p/335994370</li>
-</ul>
-<h3 id="右值引用right-value-reference的作用是什么什么时候可以用到">右值引用(Right Value Reference)的作用是什么？什么时候可以用到？</h3>
-<ul>
-<li>右值引用是C++ 11引入的概念。常用于<strong>移动语义</strong>，主要目的是避免<strong>深</strong>拷贝。在传统的左值传参的基础上，右值传参使这一行为更加灵活。</li>
-<li>移动语义：将拷贝的数据移动而非复制，避免多余的拷贝。例如：</li>
-</ul>
-<pre><code class="language-cpp">// std::vector方法定义
-void push_back (const value_type&amp; val); //左值
-void push_back (value_type&amp;&amp; val); // 右值
- 
-void emplace_back (Args&amp;&amp;... args); //右值
-
-// 即可pushback 左值， 也可pushback 右值
-std::vector&lt;int&gt; vec;
-int a = 5;
-vec.push_back(a); //左值
-vec.push_back(5); //右值
-</code></pre>
-<h3 id="为什么移动语义需要右值引用呢为什么不能用左值引用呢">为什么移动语义需要右值引用呢，为什么不能用左值引用呢？</h3>
-<ol>
-<li>第二个形参：不优雅，需要额外参数 <code>Array&amp; operator=(const Array&amp; temp_array, bool move)</code></li>
-<li>第一个形参：加 const 无法清空<strong>被拷贝</strong>者（temp_arrray)， 不加 const 无法传入右值。</li>
-</ol>
-<h3 id="stdmove和stdforward是干什么用的呢">std::move和std::forward是干什么用的呢？</h3>
-<ul>
-<li>将左值转为右值。std::foward主要用于模板编程的参数转发， 不常用到。</li>
+<li><a href="https://catlikecoding.com/unity/tutorials/custom-srp/">Unity3D自定义SRP</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/36675543">YivanLee大佬的虚幻渲染编程专题</a></li>
+<li><a href="https://www.cnblogs.com/timlly/p/13512787.html">剖析虚幻渲染体系</a></li>
 </ul>
 
             </div>
@@ -160,9 +111,9 @@ vec.push_back(5); //右值
               <div class="next">
                 下一篇
               </div>
-              <a href="https://cloudmanx.github.io/post/cuda-yu-bing-xing-bian-cheng-ji-chu/">
+              <a href="https://cloudmanx.github.io/post/c-knowledges/">
                 <h3 class="post-title">
-                  CUDA与并行编程基础
+                  C++ 知识随笔
                 </h3>
               </a>
             </div>
